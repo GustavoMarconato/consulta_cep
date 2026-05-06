@@ -1,18 +1,28 @@
+
 import json
 import tkinter as tk
 from brazilcep import get_address_from_cep
-
+from tkinter import filedialog
 historico = []
 
 def limpar_historico():
-    historico.celar()
+    historico.clear()
+    with open("ceps.json", "w", encoding="utf-8") as f:
+        json.dump([], f)
     resultado.config(text='Historico limpo!')
 
 
 def salvar_json():
-    with open("ceps.json", "w", encoding="utf-8") as f:
-        json.dump(historico, f, ensure_ascii=False, indent=4)
-    resultado.config(text='Aquivo salvo com sucesso')
+    caminho = filedialog.asksaveasfilename(
+        defaultextension=".json",
+        filetypes=[("Arquivo Json", "*.json")],
+        title="salvar arquivo JSON"
+    )
+
+    if caminho:
+        with open(caminho, "w", encoding="utf=8") as f:
+            json.dump(historico, f, ensure_ascii=False, indent=4)
+        resultado.config(text="Arquivo salvo com sucesso")
 
 
 def buscar():
