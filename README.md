@@ -26,7 +26,7 @@ Salvar histórico em arquivo `.json`
 
 
 
-#Tecnologias utilizadas
+# Tecnologias utilizadas
 
 - Python
 - Tkinter
